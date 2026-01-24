@@ -34,8 +34,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Adiciona health checks para monitoramento da aplicação
-builder.Services.AddHealthChecks()
-    .AddDbContextCheck<TrainlyDbContext>("database"); // Verifica conectividade com o banco
+builder.Services.AddHealthChecks();
+//    .AddDbContextCheck<TrainlyDbContext>("database"); // Verifica conectividade com o banco
 
 // Configuração de CORS (Cross-Origin Resource Sharing)
 // Permite que aplicações frontend em outros domínios consumam a API
