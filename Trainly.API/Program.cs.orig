@@ -21,6 +21,10 @@ builder.Services.AddCorsPolicy();
 
 // Adiciona health checks para monitoramento da aplicação
 builder.Services.AddHealthChecks();
+<<<<<<< Updated upstream
+//    .AddDbContextCheck<TrainlyDbContext>("database"); // Verifica conectividade com o banco
+=======
+>>>>>>> Stashed changes
 
 // Application Services (Repositories, Handlers, etc)
 builder.Services.AddApplicationServices();

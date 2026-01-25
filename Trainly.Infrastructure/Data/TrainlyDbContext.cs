@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
+using Trainly.Domain.Entities;
+using Trainly.Infrastructure.Data.Configurations;
 
 namespace Trainly.Infrastructure.Data;
 
@@ -9,25 +10,25 @@ namespace Trainly.Infrastructure.Data;
 /// </summary>
 public class TrainlyDbContext : DbContext
 {
-    // Constructor que recebe as opções de configuração do DbContext
-    // Essas opções são injetadas pelo DI Container
     public TrainlyDbContext(DbContextOptions<TrainlyDbContext> options)
         : base(options)
     {
     }
 
-    // DbSets serão adicionados aqui conforme criamos as entidades
-    // Exemplo: public DbSet<Workout> Workouts { get; set; }
+    // DbSets - Representam as tabelas do banco
+    public DbSet<Workout> Workouts { get; set; }
 
     /// <summary>
-    /// Método chamado quando o modelo está sendo criado
-    /// Usado para configurar relacionamentos, índices, constraints, etc.
+    /// Configuração do modelo usando Fluent API
     /// </summary>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Configurações de entidades serão adicionadas aqui
-        // Exemplo: modelBuilder.ApplyConfiguration(new WorkoutConfiguration());
+        // Aplica todas as configurações do assembly atual
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(TrainlyDbContext).Assembly);
+
+        // Ou aplicar manualmente:
+        // modelBuilder.ApplyConfiguration(new WorkoutConfiguration());
     }
 }
