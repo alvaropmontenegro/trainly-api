@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Trainly.Application.Commands.CreateWorkout;
+using Trainly.Application.Commands.Workout;
 using Trainly.Application.Queries.GetWorkout;
 
 namespace Trainly.API.Controllers;
