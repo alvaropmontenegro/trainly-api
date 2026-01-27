@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Trainly.Infrastructure.Data;
 
-
 namespace Trainly.API.Configuration.DependencyInjection;
 
 /// <summary>
