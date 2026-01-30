@@ -1,14 +1,16 @@
-//using Trainly.Application.Commands.Members;
+namespace Trainly.Application.Commands.Members;
 
+//<sumary>
+/// Command para criar um novo membro
+/// Representa a INTENÇÃO de criar um membro
+/// </summary>
 public class InsertMemberCommand
 {
-   public string Nome { get; set; }
-   public int Idade { get; set; }
-   public string CPF { get; set; }
-   public string Objetivo { get; set; }
-   public string DoencasOuRestricoes { get; set; }
-   public string Email { get; set; }
-   public string Telefone { get; set; }
-   public string Matricula { get; set; }
-   public string Plano { get; set; }
+  public string FullName { get; set; } = string.Empty;
+  public string Email { get; set; } = string.Empty;
+   public string Identity { get; set; } = string.Empty;
+   public int Age { get; set; }
+   public string Plan { get; set; } = string.Empty; 
+   public string Fone { get; set; } = string.Empty;
+   public string Password { get; set; } = string.Empty;
 }
