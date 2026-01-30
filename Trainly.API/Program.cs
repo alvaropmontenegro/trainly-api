@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Configuração do banco de dados SQL Server com Entity Framework Core
-//builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddDatabase(builder.Configuration);
 
 // Configuração do Swagger para documentação da API
 builder.Services.AddSwaggerDocumentation();
