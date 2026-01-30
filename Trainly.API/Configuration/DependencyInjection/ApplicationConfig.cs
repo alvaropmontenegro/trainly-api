@@ -1,4 +1,4 @@
-﻿using Trainly.Application.Commands.CreateWorkout;
+﻿using Trainly.Application.Commands.Workout;
 using Trainly.Application.Queries.GetWorkout;
 using Trainly.Domain.Interfaces;
 using Trainly.Infrastructure.Repositories;

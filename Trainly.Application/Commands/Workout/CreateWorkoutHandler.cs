@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using Trainly.Application.Commands.Workout;
 using Trainly.Application.DTOs;
-using Trainly.Domain.Entities;
 using Trainly.Domain.Interfaces;
+using Trainly.Domain.Entities;
 
-namespace Trainly.Application.Commands.CreateWorkout;
+namespace Trainly.Application.Commands.Workout;
 
 /// <summary>
 /// Handler responsável por processar o comando CreateWorkoutCommand
@@ -46,7 +46,7 @@ public class CreateWorkoutHandler
         }
 
         // Mapeia Command para Entidade
-        var workout = new Workout
+        var workout = new Trainly.Domain.Entities.Workout
         {
             Name = command.Name,
             Description = command.Description,
