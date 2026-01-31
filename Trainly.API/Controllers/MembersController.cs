@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-
+using Trainly.Application.Commands.Members;
+using Trainly.Domain.Interfaces;
 namespace Trainly.API.Controllers;
 
 /// <summary>
@@ -8,21 +9,31 @@ namespace Trainly.API.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")] 
-
 public class MembersController : ControllerBase
 {
-    //public readonly InsertMembersHandler _insertHandler;
+    public readonly InsertMembersHandler _insertHandler;
     public readonly ILogger<MembersController> _logger;
-    public MembersController(ILogger<MembersController> logger)
+    public MembersController(InsertMembersHandler insertHandler, ILogger<MembersController> logger)
     {
+        _insertHandler = insertHandler;
         _logger = logger;
     }
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register()
+    [HttpPost("Insert")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Insert([FromBody] InsertMemberCommand member)
     {
-        _logger.LogInformation("Endpoint de registro de membro chamado.");
-        return Ok();
+        try
+        {
+            var result = await _insertHandler.Handle(member);
+            _logger.LogInformation("Membro criado com sucesso: {Id}", result.Id);
+           return CreatedAtAction(nameof(Insert), new { id = result.Id }, result);  //Duvida aqui
+        }
+        catch (ArgumentException ex)
+        {
+            _logger.LogWarning("Erro ao registrar membro: {ErrorMessage}", ex.Message);
+            return BadRequest(new { message = "Dados inválidos para registro de membro." });
+        }
     }
-
 }

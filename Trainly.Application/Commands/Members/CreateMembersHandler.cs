@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Logging;
-using Trainly.Application.Commands.Workout;
 using Trainly.Application.DTOs;
 using Trainly.Domain.Interfaces;
 using Trainly.Domain.Entities;
@@ -17,7 +16,7 @@ public class InsertMembersHandler
 
     public async Task<MembersDto> Handle(InsertMemberCommand command)
     {
-        _logger.LogInformation("Iniciando criação de membro: {MemberName}", command.FullName);
+        _logger.LogInformation("Iniciando Inserção de membro: {MemberName}", command.FullName);
 
         if (string.IsNullOrWhiteSpace(command.FullName))
         {
@@ -25,7 +24,7 @@ public class InsertMembersHandler
             throw new ArgumentException("O nome completo do membro é obrigatório", nameof(command.FullName));
         }
 
-        var member = new Trainly.Domain.Entities.Member
+        var newMember = new Member
         {
             Name = command.FullName,
             Email = command.Email,
@@ -34,15 +33,17 @@ public class InsertMembersHandler
             Plan = command.Plan,
             Fone = command.Fone,
         };
-        var insertMember = await _repository.AddAsync(member);
+        var insertMember = await _repository.AddAsync(newMember);
         _logger.LogInformation("Membro Inserido com sucesso. ID: {MemberId}", insertMember.Id);
         return new MembersDto
         {
             Id = insertMember.Id,
             Name = insertMember.Name,
             Email = insertMember.Email,
-            DateOfBirth = insertMember.DateOfBirth
+            Age = insertMember.Age,
+            Identity = insertMember.Identity,
+            Plan = insertMember.Plan,
+            Fone = insertMember.Fone
         };
     }
-
 }
