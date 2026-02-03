@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Trainly.Application.DTOs;
+using Trainly.Application.Interfaces;
 using Trainly.Domain.Interfaces;
 
 namespace Trainly.Application.Queries.GetWorkout;
@@ -8,7 +9,7 @@ namespace Trainly.Application.Queries.GetWorkout;
 /// Handler responsável por processar a query GetWorkoutQuery
 /// Busca e retorna os dados de um treino específico
 /// </summary>
-public class GetWorkoutHandler
+public class GetWorkoutHandler : IQueryHandler<GetWorkoutQuery, WorkoutDto>
 {
     private readonly IWorkoutRepository _repository;
     private readonly ILogger<GetWorkoutHandler> _logger;
