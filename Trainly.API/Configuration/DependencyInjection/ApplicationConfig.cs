@@ -1,4 +1,6 @@
 ﻿using Trainly.Application.Commands.Workout;
+using Trainly.Application.DTOs;
+using Trainly.Application.Interfaces;
 using Trainly.Application.Queries.GetWorkout;
 using Trainly.Domain.Interfaces;
 using Trainly.Infrastructure.Repositories;
@@ -16,8 +18,8 @@ public static class ApplicationServicesConfig
         services.AddScoped<IWorkoutRepository, WorkoutRepository>();
 
         // Handlers - Scoped
-        services.AddScoped<CreateWorkoutHandler>();
-        services.AddScoped<GetWorkoutHandler>();
+        services.AddScoped<ICommandHandler<CreateWorkoutCommand, WorkoutDto>, CreateWorkoutHandler>();
+        services.AddScoped<IQueryHandler<GetWorkoutQuery, WorkoutDto>, GetWorkoutHandler>();
 
         return services;
     }

@@ -43,6 +43,12 @@ _ReSharper*/
 *.ldf
 *.ndf
 
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+
 # Entity Framework Migrations (opcional - depende do seu workflow)
 # **/Migrations/
 
