@@ -6,10 +6,11 @@ public class Member
    public string Name { get; set; } = string.Empty;
    public int Age { get; set; }
    public string Identity { get; set; } = string.Empty;
-   public string Objective { get; set; } = string.Empty;
    public string Restrictions { get; set; } = string.Empty;
    public string Email { get; set; } = string.Empty;
-   public string Fone { get; set; } = string.Empty;
+   public string Phone { get; set; } = string.Empty;
+   public string Goal { get; set; } = string.Empty;
+   public string Notes { get; set; } = string.Empty;
    public int Registration { get; set; }
    public string Plan { get; set; } = string.Empty;
 }

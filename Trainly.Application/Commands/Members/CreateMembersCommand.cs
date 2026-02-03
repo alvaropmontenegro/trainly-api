@@ -8,9 +8,10 @@ public class InsertMemberCommand
 {
   public string FullName { get; set; } = string.Empty;
   public string Email { get; set; } = string.Empty;
-   public string Identity { get; set; } = string.Empty;
-   public int Age { get; set; }
-   public string Plan { get; set; } = string.Empty; 
-   public string Fone { get; set; } = string.Empty;
-   public string Password { get; set; } = string.Empty;
+  public string Identity { get; set; } = string.Empty;
+  public int Age { get; set; }
+  public string Plan { get; set; } = string.Empty;
+  public string Phone { get; set; } = string.Empty;
+  public string Goal { get; set; } = string.Empty;
+  public string Notes { get; set; } = string.Empty;
 }

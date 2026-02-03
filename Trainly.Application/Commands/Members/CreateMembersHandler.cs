@@ -20,7 +20,7 @@ public class InsertMembersHandler
 
         if (string.IsNullOrWhiteSpace(command.FullName))
         {
-            _logger.LogWarning("Tentativa de criar membro sem nome");
+            _logger.LogError("Tentativa de criar membro sem nome");
             throw new ArgumentException("O nome completo do membro é obrigatório", nameof(command.FullName));
         }
 
@@ -31,9 +31,13 @@ public class InsertMembersHandler
             Age = command.Age,
             Identity = command.Identity,
             Plan = command.Plan,
-            Fone = command.Fone,
+            Phone = command.Phone,
+            Goal = command.Goal,
+            Notes = command.Notes
         };
+
         var insertMember = await _repository.AddAsync(newMember);
+
         _logger.LogInformation("Membro Inserido com sucesso. ID: {MemberId}", insertMember.Id);
         return new MembersDto
         {
@@ -43,7 +47,9 @@ public class InsertMembersHandler
             Age = insertMember.Age,
             Identity = insertMember.Identity,
             Plan = insertMember.Plan,
-            Fone = insertMember.Fone
+            Phone = insertMember.Phone,
+            Goal = insertMember.Goal,
+            Notes = insertMember.Notes
         };
     }
 }
