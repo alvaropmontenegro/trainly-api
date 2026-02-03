@@ -202,6 +202,48 @@ Trainly.Infrastructure/
 - ✅ Migrations
 - ✅ Integrações com serviços externos
 
+
+##️ SQLite (Banco de Dados)
+
+O Trainly utiliza **SQLite** como banco local.  
+O arquivo do banco é criado automaticamente em: Trainly.API/trainly.db
+
+
+---
+
+### Inspecionar o banco
+
+Usamos o **DB Browser for SQLite**:
+
+1. Baixe: https://sqlitebrowser.org/dl/
+2. Abra o app
+3. Clique em **Open Database**
+4. Selecione `Trainly.API/trainly.db`
+
+---
+
+### Criar as tabelas (EF Core)
+
+No terminal do Visual Studio:
+
+1) Instale o EF CLI (uma vez):
+```powershell
+dotnet tool install --global dotnet-ef
+````
+
+2) Crie a migration
+````dotnet ef migrations add InitialCreate --project Trainly.Infrastructure --startup-project Trainly.API````
+
+3) Aplique a migration
+```` dotnet ef database update --project Trainly.Infrastructure --startup-project Trainly.API ````
+
+Se deu certo, você verá:
+Trainly.Infrastructure/Migrations/
+
+e o arquivo:
+Trainly.API/trainly.db
+
+
 ---
 
 ## 🛠️ Tecnologias Utilizadas
