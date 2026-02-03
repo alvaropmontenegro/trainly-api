@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Trainly.Application.Commands.Workout;
+using Trainly.Application.DTOs;
+using Trainly.Application.Interfaces;
 using Trainly.Application.Queries.GetWorkout;
 
 namespace Trainly.API.Controllers;
@@ -12,14 +14,14 @@ namespace Trainly.API.Controllers;
 [Route("api/[controller]")]
 public class WorkoutsController : ControllerBase
 {
-    private readonly CreateWorkoutHandler _createHandler;
-    private readonly GetWorkoutHandler _getHandler;
     private readonly ILogger<WorkoutsController> _logger;
+    private readonly ICommandHandler<CreateWorkoutCommand, WorkoutDto> _createHandler;
+    private readonly IQueryHandler<GetWorkoutQuery, WorkoutDto> _getHandler;
 
     public WorkoutsController(
-        CreateWorkoutHandler createHandler,
-        GetWorkoutHandler getHandler,
-        ILogger<WorkoutsController> logger)
+        ILogger<WorkoutsController> logger,
+        ICommandHandler<CreateWorkoutCommand, WorkoutDto> createHandler,
+        IQueryHandler<GetWorkoutQuery, WorkoutDto> getHandler)
     {
         _createHandler = createHandler;
         _getHandler = getHandler;
@@ -34,14 +36,15 @@ public class WorkoutsController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetById(
+        int id)
     {
         var query = new GetWorkoutQuery(id);
         var result = await _getHandler.Handle(query);
 
         if (result == null)
         {
-            _logger.LogWarning("Treino {Id} não encontrado", id);
+            _logger.LogError("Treino {Id} não encontrado", id);
             return NotFound(new { message = $"Treino com ID {id} não encontrado" });
         }
 
@@ -72,7 +75,7 @@ public class WorkoutsController : ControllerBase
         }
         catch (ArgumentException ex)
         {
-            _logger.LogWarning("Validação falhou ao criar treino: {Message}", ex.Message);
+            _logger.LogError("Validação falhou ao criar treino: {Message}", ex.Message);
             return BadRequest(new { message = ex.Message });
         }
     }

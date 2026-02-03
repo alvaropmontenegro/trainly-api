@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Trainly.Application.Commands.Workout;
 using Trainly.Application.DTOs;
-using Trainly.Domain.Interfaces;
+using Trainly.Application.Interfaces;
 using Trainly.Domain.Entities;
+using Trainly.Domain.Interfaces;
 
 namespace Trainly.Application.Commands.Workout;
 
@@ -10,7 +11,7 @@ namespace Trainly.Application.Commands.Workout;
 /// Handler responsável por processar o comando CreateWorkoutCommand
 /// Contém a lógica de negócio para criar um treino
 /// </summary>
-public class CreateWorkoutHandler
+public class CreateWorkoutHandler : ICommandHandler<CreateWorkoutCommand, WorkoutDto>
 {
     private readonly IWorkoutRepository _repository;
     private readonly ILogger<CreateWorkoutHandler> _logger;
