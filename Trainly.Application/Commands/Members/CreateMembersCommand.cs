@@ -1,6 +1,6 @@
 namespace Trainly.Application.Commands.Members;
 
-//<sumary>
+///<sumary>
 /// Command para criar um novo membro
 /// Representa a INTENÇÃO de criar um membro
 /// </summary>
