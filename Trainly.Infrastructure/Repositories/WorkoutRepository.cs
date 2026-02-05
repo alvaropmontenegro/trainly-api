@@ -15,9 +15,7 @@ public class WorkoutRepository : IWorkoutRepository
     private readonly TrainlyDbContext _context;
     private readonly ILogger<WorkoutRepository> _logger;
 
-    public WorkoutRepository(
-        TrainlyDbContext context,
-        ILogger<WorkoutRepository> logger)
+    public WorkoutRepository(TrainlyDbContext context, ILogger<WorkoutRepository> logger)
     {
         _context = context;
         _logger = logger;

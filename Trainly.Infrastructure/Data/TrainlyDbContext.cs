@@ -17,6 +17,7 @@ public class TrainlyDbContext : DbContext
 
     // DbSets - Representam as tabelas do banco
     public DbSet<Workout> Workouts { get; set; }
+    public DbSet<Member> Members { get; set; }
 
     /// <summary>
     /// Configuração do modelo usando Fluent API
