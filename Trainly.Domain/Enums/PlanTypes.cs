@@ -1,6 +1,6 @@
 namespace Trainly.Domain.Enums;
 
-public enum Plantypes
+public enum PlanTypes
 {
     Free = 0,
     Basic = 1,

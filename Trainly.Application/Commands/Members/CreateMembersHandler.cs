@@ -3,13 +3,14 @@ using Trainly.Application.DTOs;
 using Trainly.Domain.Interfaces;
 using Trainly.Domain.Entities;
 using Trainly.Application.Interfaces;
+
 namespace Trainly.Application.Commands.Members;
 
 public class InsertMembersHandler : ICommandHandler<InsertMemberCommand, MembersDto>
 {
     private readonly IMembersRepository _repository;
-
     private readonly ILogger<InsertMembersHandler> _logger;
+    
     public InsertMembersHandler(IMembersRepository repository, ILogger<InsertMembersHandler> logger)
     {
         _repository = repository;

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Trainly.Application.Commands.Tenants;
 using Trainly.Application.DTOs;
 using Trainly.Application.Interfaces;
+
 namespace Trainly.API.Controllers;
 
 [ApiController]

@@ -1,4 +1,5 @@
 using Trainly.Domain.Enums;
+
 namespace Trainly.Domain.Entities;
 
 public class Tenant
@@ -9,9 +10,9 @@ public class Tenant
     public string Email { get; set; } = string.Empty;
     public string Phone { get; set; } = string.Empty;
     public string Address { get; set; } = string.Empty;
-    public Plantypes Plan { get; set; } //duvida sobre o plano, se é string ou enum
+    public PlanTypes Plan { get; set; } 
     public DateOnly PlanExpirationDate { get; set; } 
-    public LanguageTypes Language { get; set; } //duvida sobre o idioma, se é string ou enum
-    public string Theme { get; set; } = default!; //duvida sobre o tema, se é string ou enum
+    public LanguageTypes Language { get; set; } 
+    public ThemeTypes Theme { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

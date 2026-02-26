@@ -87,8 +87,9 @@ namespace Trainly.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Language")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("STRING");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -98,8 +99,9 @@ namespace Trainly.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Plan")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Plan")
+                        .IsRequired()
+                        .HasColumnType("STRING");
 
                     b.Property<DateOnly>("PlanExpirationDate")
                         .HasColumnType("TEXT");
