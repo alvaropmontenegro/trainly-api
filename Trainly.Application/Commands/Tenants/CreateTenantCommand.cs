@@ -17,11 +17,11 @@ public class InsertTenantCommand
     public string Address { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Plano é obrigatório.")]
-    [EnumDataType(typeof(Plantypes), ErrorMessage = "Plano inválido.")]
-    public Plantypes Plan { get; set; }
+    [EnumDataType(typeof(PlanTypes), ErrorMessage = "Plano inválido.")]
+    public PlanTypes Plan { get; set; }
 
     public DateOnly PlanExpirationDate { get; set; }
     public LanguageTypes Language { get; set; }
-    public string Theme { get; set; } = default!;
+    public ThemeTypes Theme { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
