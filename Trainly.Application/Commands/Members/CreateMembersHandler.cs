@@ -4,7 +4,6 @@ using Trainly.Domain.Interfaces;
 using Trainly.Domain.Entities;
 using Trainly.Application.Interfaces;
 
-
 namespace Trainly.Application.Commands.Members;
 
 public class InsertMembersHandler : ICommandHandler<InsertMemberCommand, MembersDto>

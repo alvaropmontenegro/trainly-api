@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Trainly.Domain.Enums;
+
 namespace Trainly.Application.Commands.Tenants;
 
 public class InsertTenantCommand
