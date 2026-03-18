@@ -4,6 +4,7 @@ using Trainly.Application.DTOs;
 using Trainly.Application.Interfaces;
 using Trainly.Domain.Entities;
 using Trainly.Domain.Interfaces;
+
 namespace Trainly.Application.Commands.Users;
 
 public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
@@ -28,12 +29,13 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
         var newUser = new User
         {
             Name = command.Name,
+            TenantId = command.TenantId,
             Role = command.Role,
             Email = command.Email,
             Avatar = command.Avatar,
             Password = command.Password,
             Phone = command.Phone,
-            //Language = command.Language,
+            Language = command.Language,
             CreatedAt = DateTime.UtcNow
         };
 
@@ -44,11 +46,12 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
         {
             Id = insertUser.Id,
             Name = insertUser.Name,
+            TenantId = insertUser.TenantId,
             Role = insertUser.Role,
             Email = insertUser.Email,
             Avatar = insertUser.Avatar,
             Phone = insertUser.Phone,
-            //Language = insertUser.Language,
+            Language = insertUser.Language,
             CreatedAt = insertUser.CreatedAt
         };
     }

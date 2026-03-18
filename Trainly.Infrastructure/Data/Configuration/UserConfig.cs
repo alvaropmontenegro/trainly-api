@@ -12,6 +12,12 @@ public class UserConfig : IEntityTypeConfiguration<User>
 
         builder.HasKey(u => u.Id);
 
+        builder.HasOne(u => u.Tenant)   //chave estrangeira
+            .WithMany()                        
+            .HasForeignKey(u => u.TenantId)     
+            .IsRequired()                       
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.Property(u => u.Name)
             .IsRequired()
             .HasMaxLength(100)
@@ -44,10 +50,10 @@ public class UserConfig : IEntityTypeConfiguration<User>
             .HasMaxLength(200)  //duvida aqui
             .HasComment("Foto do Usuário");  
         
-        // builder.Property(w => w.Language)
-        //     .IsRequired()
-        //     .HasMaxLength(100)  //duvida aqui
-        //     .HasComment("Linguagem");  
+        builder.Property(w => w.Language)
+            .IsRequired()
+            .HasMaxLength(100)  //duvida aqui
+            .HasComment("Linguagem");  
 
         builder.Property(w => w.CreatedAt)
             .IsRequired()

@@ -11,8 +11,8 @@ using Trainly.Infrastructure.Data;
 namespace Trainly.Infrastructure.Migrations
 {
     [DbContext(typeof(TrainlyDbContext))]
-    [Migration("20260318150628_RenomeiaColunaPassword")]
-    partial class RenomeiaColunaPassword
+    [Migration("20260318195003_CleanUserStructure")]
+    partial class CleanUserStructure
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,6 +69,68 @@ namespace Trainly.Infrastructure.Migrations
                     b.ToTable("Members");
                 });
 
+            modelBuilder.Entity("Trainly.Domain.Entities.Tenant", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("TEXT")
+                        .HasComment("Endereço");
+
+                    b.Property<string>("Admin")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT")
+                        .HasComment("Data de criação");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasComment("Email");
+
+                    b.Property<int>("Language")
+                        .HasMaxLength(50)
+                        .HasColumnType("INTEGER")
+                        .HasComment("Linguagem");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Nome do Centro de Treinamento");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasComment("Telefone");
+
+                    b.Property<int>("Plan")
+                        .HasMaxLength(50)
+                        .HasColumnType("INTEGER")
+                        .HasComment("Plano");
+
+                    b.Property<DateOnly>("PlanExpirationDate")
+                        .HasColumnType("TEXT")
+                        .HasComment("Data de expiração do plano");
+
+                    b.Property<int>("Theme")
+                        .HasMaxLength(50)
+                        .HasColumnType("INTEGER")
+                        .HasComment("Tema do Aplicativo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tenants", (string)null);
+                });
+
             modelBuilder.Entity("Trainly.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -91,6 +153,11 @@ namespace Trainly.Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("TEXT")
                         .HasComment("Email");
+
+                    b.Property<int>("Language")
+                        .HasMaxLength(100)
+                        .HasColumnType("INTEGER")
+                        .HasComment("Linguagem");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -122,6 +189,8 @@ namespace Trainly.Infrastructure.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("TenantId");
 
                     b.ToTable("Users", (string)null);
                 });
@@ -179,6 +248,17 @@ namespace Trainly.Infrastructure.Migrations
                     b.HasIndex("IsActive");
 
                     b.ToTable("Workouts", (string)null);
+                });
+
+            modelBuilder.Entity("Trainly.Domain.Entities.User", b =>
+                {
+                    b.HasOne("Trainly.Domain.Entities.Tenant", "Tenant")
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tenant");
                 });
 #pragma warning restore 612, 618
         }

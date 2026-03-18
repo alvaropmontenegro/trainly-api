@@ -11,8 +11,8 @@ using Trainly.Infrastructure.Data;
 namespace Trainly.Infrastructure.Migrations
 {
     [DbContext(typeof(TrainlyDbContext))]
-    [Migration("20260318172607_AjustandoTabelaTenants")]
-    partial class AjustandoTabelaTenants
+    [Migration("20260318192456_InitialRealState")]
+    partial class InitialRealState
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,6 +131,68 @@ namespace Trainly.Infrastructure.Migrations
                     b.ToTable("Tenants", (string)null);
                 });
 
+            modelBuilder.Entity("Trainly.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Avatar")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Foto do Usuário");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Data de criação");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Email");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasComment("Nome do Usuário");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Senha do Usuário");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Telefone");
+
+                    b.Property<int>("Role")
+                        .HasMaxLength(100)
+                        .HasColumnType("INTEGER")
+                        .HasComment("Papel do Usuário");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("Users", (string)null);
+                });
+
             modelBuilder.Entity("Trainly.Domain.Entities.Workout", b =>
                 {
                     b.Property<int>("Id")
@@ -184,6 +246,17 @@ namespace Trainly.Infrastructure.Migrations
                     b.HasIndex("IsActive");
 
                     b.ToTable("Workouts", (string)null);
+                });
+
+            modelBuilder.Entity("Trainly.Domain.Entities.User", b =>
+                {
+                    b.HasOne("Trainly.Domain.Entities.Tenant", "Tenant")
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tenant");
                 });
 #pragma warning restore 612, 618
         }

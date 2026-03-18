@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using Trainly.Domain.Entities;
 using Trainly.Domain.Enums;
 namespace Trainly.Application.Commands.Users;
 
 public class InsertUserCommand
 {
     public string Name { get; set; } = string.Empty;
+    public Guid TenantId{get; set;}
 
     [Required(ErrorMessage = "Email é obrigatório.")]
     [EmailAddress(ErrorMessage = "Email em formato inválido.")]
@@ -21,6 +23,6 @@ public class InsertUserCommand
     public string Phone { get; set; } = string.Empty;
 
     public string? Avatar { get; set; }  
-    //public LanguageTypes Language { get; set; }
+    public LanguageTypes Language { get; set; }
     public DateTime CreatedAt { get; set; }
 }
