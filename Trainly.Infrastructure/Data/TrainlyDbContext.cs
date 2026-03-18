@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Trainly.Domain.Entities;
+<<<<<<< Updated upstream
 using Trainly.Infrastructure.Data.Configurations;
+=======
+>>>>>>> Stashed changes
 
 namespace Trainly.Infrastructure.Data;
 

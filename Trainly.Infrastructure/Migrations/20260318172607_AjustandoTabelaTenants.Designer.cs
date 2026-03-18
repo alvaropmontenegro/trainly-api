@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainly.Infrastructure.Data;
 
@@ -10,9 +11,11 @@ using Trainly.Infrastructure.Data;
 namespace Trainly.Infrastructure.Migrations
 {
     [DbContext(typeof(TrainlyDbContext))]
-    partial class TrainlyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260318172607_AjustandoTabelaTenants")]
+    partial class AjustandoTabelaTenants
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.2");
@@ -66,22 +69,14 @@ namespace Trainly.Infrastructure.Migrations
                     b.ToTable("Members");
                 });
 
-            modelBuilder.Entity("Trainly.Domain.Entities.User", b =>
+            modelBuilder.Entity("Trainly.Domain.Entities.Tenant", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Avatar")
+                    b.Property<string>("Address")
                         .IsRequired()
-<<<<<<< Updated upstream
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
-                        .HasComment("Foto do Usuário");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasMaxLength(200)
-=======
                         .HasMaxLength(150)
                         .HasColumnType("TEXT")
                         .HasComment("Endereço");
@@ -91,50 +86,11 @@ namespace Trainly.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
->>>>>>> Stashed changes
                         .HasColumnType("TEXT")
                         .HasComment("Data de criação");
 
                     b.Property<string>("Email")
                         .IsRequired()
-<<<<<<< Updated upstream
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
-                        .HasComment("Email");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT")
-                        .HasComment("Nome do Usuário");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
-                        .HasComment("Senha do Usuário");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
-                        .HasComment("Telefone");
-
-                    b.Property<int>("Role")
-                        .HasMaxLength(100)
-                        .HasColumnType("INTEGER")
-                        .HasComment("Papel do Usuário");
-
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("Users", (string)null);
-=======
                         .HasMaxLength(100)
                         .HasColumnType("TEXT")
                         .HasComment("Email");
@@ -173,7 +129,6 @@ namespace Trainly.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tenants", (string)null);
->>>>>>> Stashed changes
                 });
 
             modelBuilder.Entity("Trainly.Domain.Entities.Workout", b =>
