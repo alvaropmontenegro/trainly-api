@@ -1,5 +1,6 @@
 # Visual Studio
 .vs/
+.vscode/
 *.suo
 *.user
 *.userosscache
@@ -45,10 +46,12 @@ _ReSharper*/
 
 # SQLite
 *.db
-*.sqlite
-*.sqlite3
 *.db-shm
 *.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal
 
 
 # Entity Framework Migrations (opcional - depende do seu workflow)

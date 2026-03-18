@@ -10,6 +10,7 @@ public class InsertMembersHandler : ICommandHandler<InsertMemberCommand, Members
 {
     private readonly IMembersRepository _repository;
     private readonly ILogger<InsertMembersHandler> _logger;
+    
     public InsertMembersHandler(IMembersRepository repository, ILogger<InsertMembersHandler> logger)
     {
         _repository = repository;

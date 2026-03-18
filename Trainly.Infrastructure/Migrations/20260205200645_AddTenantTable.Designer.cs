@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainly.Infrastructure.Data;
 
@@ -10,9 +11,11 @@ using Trainly.Infrastructure.Data;
 namespace Trainly.Infrastructure.Migrations
 {
     [DbContext(typeof(TrainlyDbContext))]
-    partial class TrainlyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260205200645_AddTenantTable")]
+    partial class AddTenantTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.2");
@@ -66,87 +69,29 @@ namespace Trainly.Infrastructure.Migrations
                     b.ToTable("Members");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Trainly.Domain.Entities.User", b =>
-=======
             modelBuilder.Entity("Trainly.Domain.Entities.Tenant", b =>
->>>>>>> 69aa3987ff0113a281cf745946a58eca33dd1d0c
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-<<<<<<< HEAD
-                    b.Property<string>("Avatar")
-                        .IsRequired()
-<<<<<<< Updated upstream
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
-                        .HasComment("Foto do Usuário");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasMaxLength(200)
-=======
-                        .HasMaxLength(150)
-                        .HasColumnType("TEXT")
-                        .HasComment("Endereço");
-=======
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("TEXT");
->>>>>>> 69aa3987ff0113a281cf745946a58eca33dd1d0c
 
                     b.Property<string>("Admin")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
-<<<<<<< HEAD
->>>>>>> Stashed changes
-                        .HasColumnType("TEXT")
-                        .HasComment("Data de criação");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-<<<<<<< Updated upstream
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
-                        .HasComment("Email");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT")
-                        .HasComment("Nome do Usuário");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
-                        .HasComment("Senha do Usuário");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
-                        .HasComment("Telefone");
-
-                    b.Property<int>("Role")
-                        .HasMaxLength(100)
-                        .HasColumnType("INTEGER")
-                        .HasComment("Papel do Usuário");
-
-                    b.Property<Guid>("TenantId")
-=======
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("STRING");
+                    b.Property<int>("Language")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -156,68 +101,19 @@ namespace Trainly.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Plan")
-                        .IsRequired()
-                        .HasColumnType("STRING");
+                    b.Property<int>("Plan")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateOnly>("PlanExpirationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Theme")
                         .IsRequired()
->>>>>>> 69aa3987ff0113a281cf745946a58eca33dd1d0c
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("Users", (string)null);
-=======
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT")
-                        .HasComment("Email");
-
-                    b.Property<int>("Language")
-                        .HasMaxLength(50)
-                        .HasColumnType("INTEGER")
-                        .HasComment("Linguagem");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
-                        .HasComment("Nome do Centro de Treinamento");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT")
-                        .HasComment("Telefone");
-
-                    b.Property<int>("Plan")
-                        .HasMaxLength(50)
-                        .HasColumnType("INTEGER")
-                        .HasComment("Plano");
-
-                    b.Property<DateOnly>("PlanExpirationDate")
-                        .HasColumnType("TEXT")
-                        .HasComment("Data de expiração do plano");
-
-                    b.Property<int>("Theme")
-                        .HasMaxLength(50)
-                        .HasColumnType("INTEGER")
-                        .HasComment("Tema do Aplicativo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tenants", (string)null);
->>>>>>> Stashed changes
-=======
                     b.ToTable("Tenants");
->>>>>>> 69aa3987ff0113a281cf745946a58eca33dd1d0c
                 });
 
             modelBuilder.Entity("Trainly.Domain.Entities.Workout", b =>

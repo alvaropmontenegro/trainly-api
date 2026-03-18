@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Trainly.Domain.Entities;
-<<<<<<< Updated upstream
 using Trainly.Infrastructure.Data.Configurations;
-=======
->>>>>>> Stashed changes
 
 namespace Trainly.Infrastructure.Data;
 
@@ -21,6 +18,7 @@ public class TrainlyDbContext : DbContext
     // DbSets - Representam as tabelas do banco
     public DbSet<Workout> Workouts { get; set; }
     public DbSet<Member> Members { get; set; }
+    public DbSet<Tenant> Tenants { get; set; }
     public DbSet<User> Users {get; set;}
 
     /// <summary>
