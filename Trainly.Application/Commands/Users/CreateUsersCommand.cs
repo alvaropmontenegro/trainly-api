@@ -10,18 +10,17 @@ public class InsertUserCommand
     [EmailAddress(ErrorMessage = "Email em formato inválido.")]
     public string Email { get; set; } = string.Empty;
 
-    public string Password { get; set; } = string.Empty;
+    public string? Password { get; set; }
 
-    [Required(ErrorMessage = "Perfil do usuário é obrigatório.")]
-    [EnumDataType(typeof(RoleType), ErrorMessage = "Perfil do usuário em formato inválido.")]
-    public string Role { get; set; } = string.Empty;    //conferir
+    [Required(ErrorMessage = "Papel do usuário é obrigatório.")]
+    [EnumDataType(typeof(RoleType), ErrorMessage = "Papel do usuário em formato inválido.")]
+    public string Role { get; set; } = string.Empty;   
 
     [Required(ErrorMessage = "Telefone é obrigatório.")]
     [Phone(ErrorMessage = "Telefone em formato inválido.")]
     public string Phone { get; set; } = string.Empty;
 
-    public string? Avatar { get; set; } 
-    public string? PasswordHash { get; set; } 
-    public LanguageTypes Language { get; set; }
+    public string? Avatar { get; set; }  
+    //public LanguageTypes Language { get; set; }
     public DateTime CreatedAt { get; set; }
 }

@@ -33,7 +33,7 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
             Avatar = command.Avatar,
             PasswordHash = command.PasswordHash,
             Phone = command.Phone,
-            Language = command.Language,
+            //Language = command.Language,
             CreatedAt = DateTime.UtcNow
         };
 
@@ -48,7 +48,7 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
             Email = insertUser.Email,
             Avatar = insertUser.Avatar,
             Phone = insertUser.Phone,
-            Language = insertUser.Language,
+            //Language = insertUser.Language,
             CreatedAt = insertUser.CreatedAt
         };
     }

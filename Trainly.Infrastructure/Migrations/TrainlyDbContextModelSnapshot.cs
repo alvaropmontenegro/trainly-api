@@ -66,6 +66,63 @@ namespace Trainly.Infrastructure.Migrations
                     b.ToTable("Members");
                 });
 
+            modelBuilder.Entity("Trainly.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Avatar")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Foto do Usuário");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Data de criação");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Email");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasComment("Nome do Usuário");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Senha do Usuário");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT")
+                        .HasComment("Telefone");
+
+                    b.Property<int>("Role")
+                        .HasMaxLength(100)
+                        .HasColumnType("INTEGER")
+                        .HasComment("Papel do Usuário");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Users", (string)null);
+                });
+
             modelBuilder.Entity("Trainly.Domain.Entities.Workout", b =>
                 {
                     b.Property<int>("Id")
