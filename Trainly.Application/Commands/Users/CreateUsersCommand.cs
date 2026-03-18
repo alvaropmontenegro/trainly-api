@@ -14,7 +14,7 @@ public class InsertUserCommand
 
     [Required(ErrorMessage = "Papel do usuário é obrigatório.")]
     [EnumDataType(typeof(RoleType), ErrorMessage = "Papel do usuário em formato inválido.")]
-    public string Role { get; set; } = string.Empty;   
+    public RoleType Role { get; set; }
 
     [Required(ErrorMessage = "Telefone é obrigatório.")]
     [Phone(ErrorMessage = "Telefone em formato inválido.")]

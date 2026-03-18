@@ -28,10 +28,10 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
         var newUser = new User
         {
             Name = command.Name,
-            //Role = command.Role,
+            Role = command.Role,
             Email = command.Email,
             Avatar = command.Avatar,
-            PasswordHash = command.PasswordHash,
+            Password = command.Password,
             Phone = command.Phone,
             //Language = command.Language,
             CreatedAt = DateTime.UtcNow
@@ -44,7 +44,7 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
         {
             Id = insertUser.Id,
             Name = insertUser.Name,
-            //Role = insertUser.Role,
+            Role = insertUser.Role,
             Email = insertUser.Email,
             Avatar = insertUser.Avatar,
             Phone = insertUser.Phone,
