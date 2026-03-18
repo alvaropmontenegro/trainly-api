@@ -5,6 +5,8 @@ using Trainly.Application.Interfaces;
 using Trainly.Domain.Entities;
 using Trainly.Domain.Interfaces;
 
+namespace Trainly.Application.Commands.Tenants;
+
 public class InsertTenantHandler : ICommandHandler<InsertTenantCommand, TenantDto>
 {
     private readonly ITenantRepository _repository;
