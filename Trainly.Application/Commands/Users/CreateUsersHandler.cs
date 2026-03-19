@@ -11,13 +11,24 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
 {
     public readonly IUsersRepository _repository;
     private readonly ILogger<InsertUserHandler> _logger;
-    public InsertUserHandler(IUsersRepository repository, ILogger<InsertUserHandler> logger)
+    private readonly ITenantRepository _tenantRepository;
+    public InsertUserHandler(IUsersRepository repository, ILogger<InsertUserHandler> logger, ITenantRepository tenantRepository)
     {
         _repository = repository;
         _logger = logger;
+        _tenantRepository = tenantRepository;
     }
     public async Task<UserDto> Handle(InsertUserCommand command)
     {
+        //Verificar existência do tenant_id no banco antes de criar o usuário
+        var tenantId = await _tenantRepository.GetByIdAsync(command.TenantId);
+        if(tenantId is null)
+        {
+            _logger.LogError("Id do Centro Inválido ou não existe!");
+            throw new ArgumentException("Impossivel Inserir um usuário sem um Centro de Treinamento válido");
+        }
+        
+
         _logger.LogInformation("Iniciando inserção de usuário: {UserName}", command.Name);
 
         if (string.IsNullOrEmpty(command.Name))

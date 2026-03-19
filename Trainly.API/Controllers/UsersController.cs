@@ -22,17 +22,16 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Insert([FromBody] InsertUserCommand user)
     {
-        //Verificar existência do tenant_id no banco antes de criar o usuário
         try
         {
             var result = await _insertHandler.Handle(user);
             _logger.LogInformation("Usuário criado com sucesso: {Id}", result.Id);
-            return CreatedAtAction(nameof(Insert), new { id = result.Id }, result);
+            return Ok(result);
         }
         catch (ArgumentException ex)
         {
             _logger.LogError("Erro ao registrar usuário: {ErrorMessage}", ex.Message);
-            return BadRequest(new { message = "Dados inválidos para registro de membro." });
-        }
+            return BadRequest(new { message = ex.Message }); 
+}
     }
 }
