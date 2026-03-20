@@ -25,6 +25,13 @@ public class TenantRepository : ITenantRepository
         return tenant;
     }
 
+     public async Task<IEnumerable<Tenant>> GetAll()
+    {
+        return await _context.Tenants
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
     public async Task<Tenant?> GetById(Guid id)
     {
         _logger.LogInformation("Buscando Centro de treinamento pelo Id: {TenantId}", id);

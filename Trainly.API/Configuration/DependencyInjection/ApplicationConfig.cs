@@ -30,7 +30,7 @@ public static class ApplicationServicesConfig
 
         services.AddScoped<ICommandHandler<InsertTenantCommand, TenantDto>, InsertTenantHandler>();
         services.AddScoped<IQueryHandler<GetTenantQuery, TenantDto>, GetTenantHandler>();
-
+        services.AddScoped<IQueryHandler<GetTenantAllQuery, IEnumerable<TenantDto>>, GetTenantAllHandler>();
 
         return services;
     }

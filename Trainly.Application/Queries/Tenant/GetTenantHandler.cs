@@ -14,6 +14,7 @@ public class GetTenantHandler : IQueryHandler<GetTenantQuery, TenantDto>
         _repository = repository;
         _logger = logger;    
     }
+    
     public async Task<TenantDto?> Handle(GetTenantQuery query)
     {
         _logger.LogInformation("Processando a query de busca por id");

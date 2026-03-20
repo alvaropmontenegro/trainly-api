@@ -12,11 +12,13 @@ public class TenantsController : ControllerBase
 {
     public readonly ICommandHandler<InsertTenantCommand, TenantDto> _insertHandler;
     public readonly IQueryHandler<GetTenantQuery, TenantDto> _getHandler;
+     public readonly IQueryHandler<GetTenantAllQuery, IEnumerable<TenantDto>> _getAllHandler;
     public readonly ILogger<TenantsController> _logger;
-    public TenantsController(ICommandHandler<InsertTenantCommand, TenantDto> insertHandler, ILogger<TenantsController> logger,  IQueryHandler<GetTenantQuery, TenantDto> getHandler)
+    public TenantsController(ICommandHandler<InsertTenantCommand, TenantDto> insertHandler, ILogger<TenantsController> logger,  IQueryHandler<GetTenantQuery, TenantDto> getHandler, IQueryHandler<GetTenantAllQuery, IEnumerable<TenantDto>> getAllHandler)
     {
         _insertHandler = insertHandler;
         _getHandler = getHandler;
+        _getAllHandler = getAllHandler;
         _logger = logger;
     }
 
@@ -54,6 +56,23 @@ public class TenantsController : ControllerBase
         }
 
         _logger.LogInformation("Centro encontrado");
+        return Ok(result);
+    }
+
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult?> GetAll()
+    {
+        var query = new GetTenantAllQuery();
+        var result = await _getAllHandler.Handle(query);
+
+        if(result is null)
+        {
+            _logger.LogError("Lista de Centros não encontrado");
+            return null;
+        }
+        _logger.LogInformation("Lista Centro encontrado");
         return Ok(result);
     }
 }
