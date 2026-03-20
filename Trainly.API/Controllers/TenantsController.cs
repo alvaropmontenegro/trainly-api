@@ -46,13 +46,19 @@ public class TenantsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(Guid id)
     {
+        if(id == Guid.Empty)
+        {
+            _logger.LogError("Formato do Id está errado");
+            return BadRequest();
+        }
+
         var query = new GetTenantQuery(id);
         var result = await _getHandler.Handle(query);
 
         if(result is null)
         {
             _logger.LogError("Centro {Id} não encontrado", id);
-            return NotFound(new { message = $"Centro com ID {id} não encontrado" });
+            return NotFound(new { message = $"Centro com ID {id} não existe" });
         }
 
         _logger.LogInformation("Centro encontrado");
