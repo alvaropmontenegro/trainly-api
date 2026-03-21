@@ -78,7 +78,7 @@ public class TenantsController : ControllerBase
             _logger.LogError("Lista de Centros não encontrado");
             return null;
         }
-        _logger.LogInformation("Lista Centro encontrado");
+        _logger.LogInformation("Lista de Centros encontrado");
         return Ok(result);
     }
 }
