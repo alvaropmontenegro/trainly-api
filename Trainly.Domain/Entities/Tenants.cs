@@ -15,4 +15,5 @@ public class Tenant
     public LanguageTypes Language { get; set; } 
     public ThemeTypes Theme { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt{get; set;}
 }

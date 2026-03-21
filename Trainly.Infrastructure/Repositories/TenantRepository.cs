@@ -23,4 +23,16 @@ public class TenantRepository : ITenantRepository
         _logger.LogInformation("Centro de Treinamento inserido com sucesso. ID: {TenantId}", tenant.Id);
         return tenant;
     }
+
+    public async Task UpdateAsync(Tenant tenant)
+    {
+        _logger.LogInformation("Atualizando Centro de treinamento: {TenantId}", tenant.Id);
+
+        tenant.UpdatedAt = DateTime.UtcNow;
+
+        _context.Tenants.Update(tenant);
+        await _context.SaveChangesAsync();
+
+        _logger.LogInformation("Centro de treinamento atualizado com sucesso");
+    }
 }

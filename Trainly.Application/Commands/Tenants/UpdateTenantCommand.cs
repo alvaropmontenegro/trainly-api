@@ -3,7 +3,7 @@ using Trainly.Domain.Enums;
 
 namespace Trainly.Application.Commands.Tenants;
 
-public class InsertTenantCommand
+public class UpdateTenantCommand
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
@@ -25,5 +25,5 @@ public class InsertTenantCommand
     public DateOnly PlanExpirationDate { get; set; }
     public LanguageTypes Language { get; set; }
     public ThemeTypes Theme { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
+

@@ -34,4 +34,25 @@ public class TenantsController : ControllerBase
             return BadRequest(new { message = "Dados inválidos para registro de Centro de Treinamento." });
         }
     }
+
+    [HttpPut("{id:Guid}")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Update(UpdateTenantCommand tenant, Guid id)
+    {
+        if (Guid.Empty(id))
+        {
+            _logger.LogError("Formato de Id Invalido: {TenantId}", id);
+            return BadRequest(new {message = "Id em formato invalido"});
+        }
+        else if(id != tenant.Id)
+        {
+            _logger.LogError("Erro ao procurar o Id: {TenantId}", id);
+            return NotFound(new {message = "Id não existe no banco de dados"});
+        }
+
+        //fazer a logica para atualizar se passou nos ids
+
+    }
 }
