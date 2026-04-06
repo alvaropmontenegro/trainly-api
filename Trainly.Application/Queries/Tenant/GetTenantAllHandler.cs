@@ -25,7 +25,15 @@ public class GetTenantAllHandler : IQueryHandler<GetTenantAllQuery, IEnumerable<
             var dto = new TenantDto
             {
                 Id = t.Id,
-                Name = t.Name
+                Name = t.Name,
+                Admin = t.Admin,
+                Email = t.Email,
+                Phone = t.Phone,
+                Address = t.Address,
+                Plan = t.Plan,
+                PlanExpirationDate = t.PlanExpirationDate,
+                Language = t.Language,
+                Theme = t.Theme
             };
             listaDto.Add(dto);
         }

@@ -29,6 +29,7 @@ public class InsertTenantHandler : ICommandHandler<InsertTenantCommand, TenantDt
         var newTenant = new Tenant
         {
             Name = command.Name,
+            Admin = command.Admin,
             Email = command.Email,
             Phone = command.Phone,
             Address = command.Address,
@@ -45,6 +46,7 @@ public class InsertTenantHandler : ICommandHandler<InsertTenantCommand, TenantDt
         {
             Id = insertTenant.Id,
             Name = insertTenant.Name,
+            Admin = insertTenant.Admin,
             Email = insertTenant.Email,
             Phone = insertTenant.Phone,
             Address = insertTenant.Address,
