@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Trainly.Domain.Entities;
 using Trainly.Infrastructure.Data.Configurations;
+
 namespace Trainly.Infrastructure.Data;
 
 /// <summary>
@@ -18,6 +19,7 @@ public class TrainlyDbContext : DbContext
     public DbSet<Workout> Workouts { get; set; }
     public DbSet<Member> Members { get; set; }
     public DbSet<Tenant> Tenants { get; set; }
+    public DbSet<User> Users {get; set;}
 
     /// <summary>
     /// Configuração do modelo usando Fluent API
@@ -28,8 +30,5 @@ public class TrainlyDbContext : DbContext
 
         // Aplica todas as configurações do assembly atual
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(TrainlyDbContext).Assembly);
-
-        // Ou aplicar manualmente:
-        // modelBuilder.ApplyConfiguration(new WorkoutConfiguration());
     }
 }

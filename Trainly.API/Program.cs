@@ -1,25 +1,28 @@
 using Trainly.API.Configuration.DependencyInjection;
 using Trainly.API.Configuration.Middleware;
+using Trainly.Domain.Entities;
+using Trainly.Domain.Interfaces;
+using Trainly.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ========================================
-// CONFIGURAÇÃO DE SERVIÇOS (DI Container)
+// CONFIGURAï¿½ï¿½O DE SERVIï¿½OS (DI Container)
 // ========================================
 
 // Adiciona suporte para controllers da API
 builder.Services.AddControllers();
 
-// Configuração do banco de dados SQL Server com Entity Framework Core
+// Configuraï¿½ï¿½o do banco de dados SQL Server com Entity Framework Core
 builder.Services.AddDatabase(builder.Configuration);
 
-// Configuração do Swagger para documentação da API
+// Configuraï¿½ï¿½o do Swagger para documentaï¿½ï¿½o da API
 builder.Services.AddSwaggerDocumentation();
 
-// Configuração de CORS (Cross-Origin Resource Sharing)
+// Configuraï¿½ï¿½o de CORS (Cross-Origin Resource Sharing)
 builder.Services.AddCorsPolicy();
 
-// Adiciona health checks para monitoramento da aplicação
+// Adiciona health checks para monitoramento da aplicaï¿½ï¿½o
 builder.Services.AddHealthChecks();
 
 // Application Services (Repositories, Handlers, etc)
@@ -28,7 +31,7 @@ builder.Services.AddApplicationServices();
 var app = builder.Build();
 
 // ========================================
-// CONFIGURAÇÃO DO PIPELINE DE REQUISIÇÕES
+// CONFIGURAï¿½ï¿½O DO PIPELINE DE REQUISIï¿½ï¿½ES
 // ========================================
 
 app.ConfigureMiddleware();
@@ -39,5 +42,5 @@ app.UseSwaggerDocumentation();
 // Mapeia os controllers da API
 app.ConfigureEndpoints();
 
-// Inicia a aplicação
+// Inicia a aplicaï¿½ï¿½o
 app.Run();

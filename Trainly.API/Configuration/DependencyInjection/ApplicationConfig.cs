@@ -1,9 +1,11 @@
 ﻿using Trainly.Application.Commands.Members;
+using Trainly.Application.Commands.Users;
 using Trainly.Application.Commands.Workout;
 using Trainly.Application.Commands.Tenants;
 using Trainly.Application.DTOs;
 using Trainly.Application.Interfaces;
 using Trainly.Application.Queries.GetWorkout;
+using Trainly.Domain.Entities;
 using Trainly.Domain.Interfaces;
 using Trainly.Infrastructure.Repositories;
 
@@ -19,6 +21,7 @@ public static class ApplicationServicesConfig
         // Repositories - Scoped (uma instância por requisição)
         services.AddScoped<IWorkoutRepository, WorkoutRepository>();
         services.AddScoped<IMembersRepository, MembersRepository>();
+        services.AddScoped<IUsersRepository, UsersRepository>();
         services.AddScoped<ITenantRepository, TenantRepository>();
 
         // Handlers - Scoped
@@ -28,6 +31,8 @@ public static class ApplicationServicesConfig
         services.AddScoped<ICommandHandler<InsertMemberCommand, MembersDto>, InsertMembersHandler>();
 
         services.AddScoped<ICommandHandler<InsertTenantCommand, TenantDto>, InsertTenantHandler>();
+
+        services.AddScoped<ICommandHandler<InsertUserCommand, UserDto>, InsertUserHandler>();
 
         return services;
     }
