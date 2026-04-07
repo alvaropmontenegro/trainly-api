@@ -4,4 +4,5 @@ namespace Trainly.Domain.Interfaces;
 public interface IUsersRepository
 {
     Task<User> AddAsync(User user);
+    Task<User?> GetByEmailAsync(string email);
 }

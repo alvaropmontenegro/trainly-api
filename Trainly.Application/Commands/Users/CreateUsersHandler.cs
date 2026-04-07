@@ -50,6 +50,13 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
             CreatedAt = DateTime.UtcNow
         };
 
+        var existingUser = await _repository.GetByEmailAsync(command.Email);
+        if (existingUser != null)
+        {
+            _logger.LogError("Tentativa de criar usuário com email já existente: {Email}", command.Email);
+            throw new ArgumentException("Já existe um usuário com este email", nameof(command.Email));
+        }
+
         var insertUser = await _repository.AddAsync(newUser);
 
         _logger.LogInformation("Usuário inserido com sucesso. ID: {UserId}", insertUser.Id);
