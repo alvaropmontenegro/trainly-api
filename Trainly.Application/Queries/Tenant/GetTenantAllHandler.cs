@@ -18,7 +18,7 @@ public class GetTenantAllHandler : IQueryHandler<GetTenantAllQuery, IEnumerable<
     public async Task<IEnumerable<TenantDto>> Handle(GetTenantAllQuery query)
     {
         var tenants = await _repository.GetAll();
-        var listaDto = new List<TenantDto>();
+        var listDto = new List<TenantDto>();
 
         foreach(var t in tenants)
         {
@@ -35,8 +35,8 @@ public class GetTenantAllHandler : IQueryHandler<GetTenantAllQuery, IEnumerable<
                 Language = t.Language,
                 Theme = t.Theme
             };
-            listaDto.Add(dto);
+            listDto.Add(dto);
         }
-        return listaDto;
+        return listDto;
     }
 }
