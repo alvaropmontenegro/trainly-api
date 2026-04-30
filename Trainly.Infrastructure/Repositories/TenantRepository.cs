@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Trainly.Domain.Entities;
 using Trainly.Domain.Interfaces;
@@ -22,5 +23,28 @@ public class TenantRepository : ITenantRepository
 
         _logger.LogInformation("Centro de Treinamento inserido com sucesso. ID: {TenantId}", tenant.Id);
         return tenant;
+    }
+
+     public async Task<IEnumerable<Tenant>> GetAll()
+    {
+        return await _context.Tenants
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
+    public async Task<Tenant?> GetById(Guid id)
+    {
+        _logger.LogInformation("Buscando Centro de treinamento pelo Id: {TenantId}", id);
+
+        var tenants = await _context.Tenants
+            .AsNoTracking()
+            .FirstOrDefaultAsync(t => t.Id == id);
+        
+        if(tenants is null)
+        {
+            _logger.LogWarning("Centro de treinamento não encontrado!");
+        }
+
+        return tenants;
     }
 }

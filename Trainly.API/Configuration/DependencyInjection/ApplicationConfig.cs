@@ -6,6 +6,7 @@ using Trainly.Application.Interfaces;
 using Trainly.Application.Queries.GetWorkout;
 using Trainly.Domain.Interfaces;
 using Trainly.Infrastructure.Repositories;
+using Trainly.Application.Queries.Tenant;
 
 namespace Trainly.API.Configuration.DependencyInjection;
 
@@ -28,6 +29,8 @@ public static class ApplicationServicesConfig
         services.AddScoped<ICommandHandler<InsertMemberCommand, MembersDto>, InsertMembersHandler>();
 
         services.AddScoped<ICommandHandler<InsertTenantCommand, TenantDto>, InsertTenantHandler>();
+        services.AddScoped<IQueryHandler<GetTenantQuery, TenantDto>, GetTenantHandler>();
+        services.AddScoped<IQueryHandler<GetTenantAllQuery, IEnumerable<TenantDto>>, GetTenantAllHandler>();
 
         return services;
     }
