@@ -1,6 +1,4 @@
 using Microsoft.Extensions.Logging;
-using Trainly.Application.Commands.Users;
-using Trainly.Application.DTOs;
 using Trainly.Application.Interfaces;
 using Trainly.Domain.Entities;
 using Trainly.Domain.Interfaces;
@@ -12,9 +10,9 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
     public readonly IUsersRepository _repository;
     private readonly ILogger<InsertUserHandler> _logger;
     private readonly ITenantRepository _tenantRepository;
-    public InsertUserHandler(IUsersRepository repository, ILogger<InsertUserHandler> logger, ITenantRepository tenantRepository)
+    public InsertUserHandler(IUsersRepository usersRepository, ILogger<InsertUserHandler> logger, ITenantRepository tenantRepository)
     {
-        _repository = repository;
+        _repository = usersRepository;
         _logger = logger;
         _tenantRepository = tenantRepository;
     }

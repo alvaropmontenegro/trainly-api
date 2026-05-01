@@ -17,9 +17,10 @@ public class TenantConfig : IEntityTypeConfiguration<Tenant>
             .HasMaxLength(200)
             .HasComment("Nome do Centro de Treinamento");
 
-        // builder.Property(t => t.Admin)   //duvida!
-        //     .HasMaxLength(1000)
-        //     .HasComment("");
+         builder.Property(t => t.Admin)  
+            .IsRequired()
+            .HasMaxLength(150)
+            .HasComment("Nome do administrador responsável pelo Centro de Treinamento");
 
         builder.Property(t => t.Email)
             .IsRequired()
