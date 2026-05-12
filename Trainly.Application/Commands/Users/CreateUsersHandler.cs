@@ -7,12 +7,12 @@ namespace Trainly.Application.Commands.Users;
 
 public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
 {
-    public readonly IUsersRepository _repository;
+    public readonly IUsersRepository _usersRepository;
     private readonly ILogger<InsertUserHandler> _logger;
     private readonly ITenantRepository _tenantRepository;
     public InsertUserHandler(IUsersRepository usersRepository, ILogger<InsertUserHandler> logger, ITenantRepository tenantRepository)
     {
-        _repository = usersRepository;
+        _usersRepository = usersRepository;
         _logger = logger;
         _tenantRepository = tenantRepository;
     }
@@ -48,14 +48,14 @@ public class InsertUserHandler : ICommandHandler<InsertUserCommand, UserDto>
             CreatedAt = DateTime.UtcNow
         };
 
-        var existingUser = await _repository.GetByEmailAsync(command.Email);
+        var existingUser = await _usersRepository.GetByEmailAsync(command.Email);
         if (existingUser != null)
         {
             _logger.LogError("Tentativa de criar usuário com email já existente: {Email}", command.Email);
             throw new ArgumentException("Já existe um usuário com este email", nameof(command.Email));
         }
 
-        var insertUser = await _repository.AddAsync(newUser);
+        var insertUser = await _usersRepository.AddAsync(newUser);
 
         _logger.LogInformation("Usuário inserido com sucesso. ID: {UserId}", insertUser.Id);
         return new UserDto
